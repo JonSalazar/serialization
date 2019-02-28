@@ -79,25 +79,7 @@ int main(int argc, char** argv) {
     tx.nVersion = 2;
 
     std::string txid = "358d8c9c2a8843cce58a7c35158f32213e1725d8c08e35a5b56ff319affe9ac9";
-    std::vector<unsigned char> vch;
-    for (int i = 0; i < txid.length(); i+=2) {
-        unsigned char v = txid[ i ];
-        if (v == 'a' || v == 'b' || v == 'c' || v == 'd' || v == 'e' || v == 'f')
-            v = v - 'a' + 10;
-        else
-            v = v - '0';
-        v *= 16;
-        unsigned char v2 = txid[ i + 1 ];
-        if (v2 == 'a' || v2 == 'b' || v2 == 'c' || v2 == 'd' || v2 == 'e' || v2 == 'f')
-            v2 = v2 - 'a' + 10;
-        else
-            v2 = v2 - '0';
-
-        v += v2;
-
-        vch.push_back(v);
-    }
-    uint256 lastTx(vch);
+    uint256 lastTx = uint256S(txid);
     
     CTxIn txin(lastTx, 1);
     tx.vin.push_back(txin);
@@ -105,6 +87,8 @@ int main(int argc, char** argv) {
     auto hashMessage = SerializeHash(firstInput);
 
     std::cout << hashMessage.ToString() << std::endl;
+
+    // std::cout << txin.ToString() << std::endl;
 
     return 0;
 }
