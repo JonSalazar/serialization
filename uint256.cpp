@@ -39,7 +39,7 @@ void base_blob<BITS>::SetHex(const char* psz)
 
     // hex string to uint
     const char* pbegin = psz;
-    while (::HexDigit(*psz) != -1)
+    while (HexDigit(*psz) != -1)
         psz++;
     psz--;
     unsigned char* p1 = (unsigned char*)data;

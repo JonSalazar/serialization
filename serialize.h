@@ -585,6 +585,7 @@ template<typename Stream, typename T> void Unserialize(Stream& os, std::unique_p
 /**
  * If none of the specialized versions above matched, default to calling member function.
  */
+#include <iostream>
 template<typename Stream, typename T>
 inline void Serialize(Stream& os, const T& a)
 {
@@ -959,8 +960,10 @@ public:
 template<typename Stream>
 void SerializeMany(Stream& s)
 {
-}
 
+}
+#include <typeinfo>
+#include "uint256.h"
 template<typename Stream, typename Arg, typename... Args>
 void SerializeMany(Stream& s, const Arg& arg, const Args&... args)
 {

@@ -197,7 +197,7 @@ CSHA256::CSHA256() : bytes(0)
 {
     sha256::Initialize(s);
 }
-
+#include <iostream>
 CSHA256& CSHA256::Write(const unsigned char* data, size_t len)
 {
     const unsigned char* end = data + len;
